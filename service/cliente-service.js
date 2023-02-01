@@ -1,5 +1,6 @@
-const ciaNovaLinha = () => {
-    const conteudo = `
+const createNewLine = (nome, email) => {
+    const newCustomerLine = document.createElement('tr')
+    const content = `
     
     <td class="td" data-td>${nome}</td>
         <td>${email}</td>
@@ -10,8 +11,12 @@ const ciaNovaLinha = () => {
             </ul>
         </td> 
         `
+
+        newCustomerLine.innerHTML = content
+        return newCustomerLine
 }
 
+const table = document.querySelector('[data-tabela]')
 
 
 const http = new XMLHttpRequest()
@@ -21,6 +26,8 @@ http.open('GET', 'http://localhost:3000/profile')
 http.send()
 
 http.onload = () => {
-    const data = http.response
-    console.log(data)
+    const data = JSON.parse(http.response)
+    data.forEach(element => {
+        table.appendChild(createNewLine(element.nome,element.email))
+    });
 }
