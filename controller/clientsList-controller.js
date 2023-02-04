@@ -1,3 +1,5 @@
+import { clientService } from '../service/client-service.js'
+
 const createNewLine = (nome, email) => {
     const newCustomerLine = document.createElement('tr')
     const content = `
@@ -18,16 +20,8 @@ const createNewLine = (nome, email) => {
 
 const table = document.querySelector('[data-tabela]')
 
-const clientsList = () => {
-    return fetch('http://localhost:3000/profile')
-    .then ( response => {
-        return response.json()
-
-    })
-}
-
-clientsList() 
+clientService.clientsList() 
 .then( data => {
     data.forEach(element => {
     table.appendChild(createNewLine(element.nome,element.email))
-})})
+})}) 
