@@ -15,13 +15,26 @@ const createNewLine = (nome, email) => {
         `
 
         newCustomerLine.innerHTML = content
+        newCustomerLine.dataset.id = id
         return newCustomerLine
 }
 
 const table = document.querySelector('[data-tabela]')
 
+table.addEventListener('click', (event)=> {
+    let deleteButton = event.target.className === 'botao-simples botao-simples--excluir'
+    if(deleteButton){
+        const clienteLine = event.target.closest('[data-id]')
+        let id = clienteLine.dataset.id
+        clientService.removeClient(id)
+        .then(()=>{
+            clienteLine.remove()
+        })
+    }
+})
+
 clientService.clientsList() 
 .then( data => {
     data.forEach(element => {
-    table.appendChild(createNewLine(element.nome,element.email))
+    table.appendChild(createNewLine(element.nome,element.email, element.id))
 })}) 
