@@ -1,24 +1,9 @@
 {
   "profile": [
     {
-      "nome": "felipe",
+      "nome": "lucas",
       "email": "felipe@alura.com",
       "id": 1
-    },
-    {
-      "nome": {},
-      "email": "gsd",
-      "id": 2
-    },
-    {
-      "nome": {},
-      "email": "asd",
-      "id": 3
-    },
-    {
-      "nome": {},
-      "email": "qweqwe",
-      "id": 4
     }
   ]
 }
